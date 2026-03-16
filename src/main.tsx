@@ -2,7 +2,7 @@ import { StrictMode, useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Welcome } from './welcome'
 import { Playground } from './playground'
-import { Docs } from './docs'
+// docs content merged into welcome page
 import './tokens.css'
 import './preview.css'
 import { Signal } from './components/Signal/Signal'
@@ -4117,16 +4117,15 @@ function Library({ onBack }: { onBack: () => void }) {
 }
 
 function App() {
-  const getViewFromParams = (): 'welcome' | 'library' | 'playground' | 'docs' => {
+  const getViewFromParams = (): 'welcome' | 'library' | 'playground' => {
     const params = new URLSearchParams(window.location.search)
     const v = params.get('view')
     if (v === 'playground') return 'playground'
-    if (v === 'docs')       return 'docs'
     if (v === 'library' || params.get('page')) return 'library'
     return 'welcome'
   }
 
-  const [view, setView] = useState<'welcome' | 'library' | 'playground' | 'docs'>(getViewFromParams)
+  const [view, setView] = useState<'welcome' | 'library' | 'playground'>(getViewFromParams)
 
   useEffect(() => {
     const handler = () => setView(getViewFromParams())
@@ -4149,15 +4148,9 @@ function App() {
     setView('playground')
   }
 
-  const goToDocs = () => {
-    window.history.pushState(null, '', '?view=docs')
-    setView('docs')
-  }
-
   if (view === 'library')    return <Library    onBack={goToWelcome} />
   if (view === 'playground') return <Playground onBack={goToWelcome} />
-  if (view === 'docs')       return <Docs       onBack={goToWelcome} />
-  return <Welcome onLibrary={goToLibrary} onPlayground={goToPlayground} onDocs={goToDocs} />
+  return <Welcome onLibrary={goToLibrary} onPlayground={goToPlayground} />
 }
 
 createRoot(document.getElementById('root')!).render(
