@@ -1221,14 +1221,14 @@ function StoryFoundationsLogos() {
           </div>
         ))}
       </div>
-      <div className="preview-row" style={{ marginTop: 24, background: 'var(--bg-strong)', borderRadius: 8, padding: 24, flexWrap: 'wrap', gap: 32 }}>
+      <div className="preview-row" style={{ marginTop: 24, background: 'var(--bg-strong)', borderRadius: 8, padding: 24, flexWrap: 'wrap', gap: 32, color: '#ffffff' }}>
         {[
           { component: <SupermegaMonoLogo />, label: 'supermega-mono-logo' },
           { component: <PortalLogoDark />,  label: 'portal-logo-dark' },
         ].map(({ component, label }) => (
           <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-start' }}>
             {component}
-            <span style={{ fontSize: 11, color: 'var(--fg-secondary)' }}>{label}</span>
+            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>{label}</span>
           </div>
         ))}
       </div>
